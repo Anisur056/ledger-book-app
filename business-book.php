@@ -2,6 +2,14 @@
 <?php require('app/DbClass.php');?>
 <?php $db = new DbClass(); ?>
 
+<?php
+    if(isset($_GET['business'])){
+      $ledger_books_id = filter_var($_GET['business'], FILTER_SANITIZE_NUMBER_INT);
+    }else{
+      $ledger_books_id = 0;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +20,9 @@
 </head>
 <body>
   <?php
-      $result = $db->showBusinessBookName();
+      $result = $db->showLedgerBooksName($ledger_books_id);
       foreach($result as $data): ?>
-      <a href="business-book.php?business=<?= $data['id'] ?>"><?= $data['business_book_name'] ?></a>
+      <a href="ledger-book.php?ledger=<?= $data['id'] ?>"><?= $data['ledger_book_name'] ?></a>
       <br>
   <?php endforeach; ?>
 

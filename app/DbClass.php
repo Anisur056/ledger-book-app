@@ -5,7 +5,7 @@ class DbClass{
     Public $pub_pdo;
 
     public function __construct(){
-        require "settings.php";
+        require "db-config.php";
         $this->pub_pdo = $pdo;
     }
 
@@ -17,14 +17,8 @@ class DbClass{
     }
 
     public function showLedgerBooksName($business_book_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_books` WHERE `tbl_business_book_id` = ?');
+        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_books` WHERE `tbl_business_book_id` = ? ORDER BY `id` DESC');
         $statement->execute([$business_book_id]);
-        return $statement->fetchAll();
-    }
-
-    public function showLedgerBookById($ledger_book_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_books` WHERE `id` = ?');
-        $statement->execute([$ledger_book_id]);
         return $statement->fetchAll();
     }
 
