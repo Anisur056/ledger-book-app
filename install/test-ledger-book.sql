@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2025 at 12:13 PM
+-- Generation Time: Jul 17, 2025 at 04:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `business-accounts-db`
+-- Database: `test-ledger-book`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,11 @@ CREATE TABLE `tbl_business_book` (
 --
 
 INSERT INTO `tbl_business_book` (`id`, `business_book_name`) VALUES
-(1, 'AZAD-FAMILY-BUSINESS');
+(1, 'SEA-QUEEN-SALLARY'),
+(2, 'JAMAL-COMPUTER'),
+(3, 'WOODLAND-SALARY'),
+(4, 'কোর্ট বিল্ডিং- আয় বিবরণী'),
+(5, 'Anisur Rahman\'s business');
 
 -- --------------------------------------------------------
 
@@ -56,8 +60,14 @@ CREATE TABLE `tbl_ledger_books` (
 --
 
 INSERT INTO `tbl_ledger_books` (`id`, `ledger_book_name`, `tbl_business_book_id`) VALUES
-(1, 'DAILY-STATEMENT-SQSA', 1),
-(2, 'DAILY-STATEMENT-H.K.TRADING', 1);
+(1, 'SALARY-NOVEMBER-2024', 1),
+(2, 'SALARY-DECEMBER-2024', 1),
+(3, 'SALARY-JANUARY-2025', 1),
+(4, 'SALARY-FEBRUARY-2025', 1),
+(5, 'SALARY-MARCH-2025', 1),
+(6, 'SALARY-APRIL-2025', 1),
+(7, 'SALARY-MAY-2025', 1),
+(8, 'SALARY-JUNE-2025', 1);
 
 -- --------------------------------------------------------
 
@@ -83,8 +93,8 @@ CREATE TABLE `tbl_ledger_book_transections` (
 --
 
 INSERT INTO `tbl_ledger_book_transections` (`id`, `date`, `time`, `description`, `party_name`, `accounts_head`, `entry_by`, `cash_in`, `cash_out`, `tbl_ledger_books_id`) VALUES
-(1, '06-Feb-25', '2:30 PM', 'নগদ জমা- আবুল কালাম আজাদ', '', 'CASH-DEPOSIT', 'Sea-Queen-Shipping-Agencies', 50000, 0, 1),
-(2, '15-Jun-25', '11:25 AM', 'খোকন স্যার- নগদ অগ্রিম জমা', '', '', 'Anisur Rahman', 0, 200, 1);
+(1, '06-Feb-25', '2:30 PM', 'নগদ জমা- আবুল কালাম আজাদ', '', 'CASH-DEPOSIT', 'Sea-Queen-Shipping-Agencies', 50000, 0, 8),
+(2, '15-Jun-25', '11:25 AM', 'খোকন স্যার- নগদ অগ্রিম জমা', '', '', 'Anisur Rahman', 0, 200, 8);
 
 -- --------------------------------------------------------
 
@@ -133,19 +143,19 @@ ALTER TABLE `tbl_transection_accounts_head`
 -- AUTO_INCREMENT for table `tbl_business_book`
 --
 ALTER TABLE `tbl_business_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_ledger_books`
 --
 ALTER TABLE `tbl_ledger_books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_ledger_book_transections`
 --
 ALTER TABLE `tbl_ledger_book_transections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
 
 --
 -- AUTO_INCREMENT for table `tbl_transection_accounts_head`
