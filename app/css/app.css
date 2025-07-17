@@ -1,0 +1,15 @@
+body{
+    width:393px; 
+    margin: 0 auto;
+    background: gray;
+}
+.image{
+    width: 45px;
+    height: 45px;
+}
+.fsize-title{
+    font-size: 10pt;
+}
+.fsize-sub{
+    font-size: 8pt;
+}

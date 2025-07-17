@@ -22,8 +22,14 @@ class DbClass{
         return $statement->fetchAll();
     }
 
+    public function showLedgerBooksid($id){
+        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_books` WHERE `id` = ? ');
+        $statement->execute([$id]);
+        return $statement->fetchAll();
+    }
+
         public function showLedgerBookTranscetion($ledger_book_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_book_transections` WHERE `tbl_ledger_books_id` = ?');
+        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_book_transections` WHERE `tbl_ledger_books_id` = ?  ORDER BY `id` DESC LIMIT 10');
         $statement->execute([$ledger_book_id]);
         return $statement->fetchAll();
     }
