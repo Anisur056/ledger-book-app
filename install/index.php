@@ -101,7 +101,7 @@
 
     if(isset($_POST['dbBtn'])){
 
-        require ('init-config.php');
+        require ('../app/db-config.php');
 
         $sql_data = file_get_contents($_FILES['dbFile']['tmp_name']);
 
