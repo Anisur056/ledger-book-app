@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="app/css/app.css">
   <link rel="stylesheet" href="app/css/bootstrap.min.css">
 </head>
-<body style="">
+<body class="body-mobile bg-app-gray">
 
   <!-- Mobile Navbar -->
   <nav class="border-bottom">

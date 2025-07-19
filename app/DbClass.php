@@ -28,57 +28,26 @@ class DbClass{
         return $statement->fetchAll();
     }
 
-        public function showLedgerBookTranscetion($ledger_book_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_book_transections` WHERE `tbl_ledger_books_id` = ?  ORDER BY `id` DESC LIMIT 10');
+    public function showLedgerBookTranscetion($ledger_book_id, $offset, $limit_to_show){
+        $statement = $this->pub_pdo->prepare("SELECT * FROM `tbl_ledger_book_transections` WHERE `tbl_ledger_books_id` = ?  ORDER BY `id` DESC LIMIT $offset, $limit_to_show");
         $statement->execute([$ledger_book_id]);
         return $statement->fetchAll();
     }
 
-    // ========================= VOUCHER RELATED DB SCRIPT ================================= //
-    public function showVoucherByStudentId($student_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `shnmm_tbl_vouchers` WHERE `INKED_TO`=? AND `TRANSECTION_STATUS`=? AND `ACCOUNTS_HEAD`=?');
-        $statement->execute([$student_id,'cash_in','FEES_COLLECTION']);
+    public function cashCalculation($ledger_book_id){
+        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_ledger_book_transections` WHERE `tbl_ledger_books_id` = ?');
+        $statement->execute([$ledger_book_id]);
         return $statement->fetchAll();
     }
 
-    public function addVoucher($ENTRY_DATE, $STUDENT_NAME,$STUDENT_CLASS,
-            $STUDENT_SECTION, $STUDENT_ROLL,
-            $TRANSECTION_STATUS, $ACCOUNTS_HEAD, 
-            $DESCRIPTION, $AMOUNT, $RECEIVED, 
-            $DUE, $REMARK, $RECEIVED_BY, $INKED_TO){
-            $addStudent = $this->pub_pdo->prepare('INSERT INTO `shnmm_tbl_vouchers`
-            (`ENTRY_DATE`,`STUDENT_NAME`,`STUDENT_CLASS`,
-            `STUDENT_SECTION`, `STUDENT_ROLL`,`TRANSECTION_STATUS`, 
-            `ACCOUNTS_HEAD`, `DESCRIPTION`, `AMOUNT`, 
-            `RECEIVED`, `DUE`, `REMARK`, `RECEIVED_BY`, `INKED_TO`) 
-            VALUES (?,?,?,
-            ?,?,?,
-            ?,?,?,?,
-            ?,?,?,?)');
-      
-        $addStudent->execute([$ENTRY_DATE, $STUDENT_NAME,$STUDENT_CLASS,
-            $STUDENT_SECTION, $STUDENT_ROLL,
-            $TRANSECTION_STATUS, $ACCOUNTS_HEAD, 
-            $DESCRIPTION, $AMOUNT, $RECEIVED, 
-            $DUE, $REMARK, $RECEIVED_BY, $INKED_TO]);
+    public function read_tbl_transection_accounts_head(){
+        $statement = $this->pub_pdo->prepare('SELECT * FROM `tbl_transection_accounts_head`');
+        $statement->execute();
+        return $statement->fetchAll();
     }
 
-    public function updateVoucher($ENTRY_DATE,$DESCRIPTION, $AMOUNT, 
-        $RECEIVED,$DUE, $REMARK, $VOUCHER_NO){
-        $update = $this->pub_pdo->prepare('UPDATE `shnmm_tbl_vouchers` SET 
-        `ENTRY_DATE`= ?,`DESCRIPTION`= ?,`AMOUNT`= ?,`RECEIVED`= ?,
-        `DUE`= ?,`REMARK`= ? WHERE `VOUCHER_NO` = ?');
-  
-        $update->execute([
-          $ENTRY_DATE,$DESCRIPTION,
-          $AMOUNT,$RECEIVED,$DUE,
-          $REMARK,$VOUCHER_NO,]);
-    }
     
-    public function showVoucherById($voucher_id){
-        $statement = $this->pub_pdo->prepare('SELECT * FROM `shnmm_tbl_vouchers` WHERE `VOUCHER_NO`=?');
-        $statement->execute([$voucher_id]);
-        return $statement->fetchAll();
-    }
+
+  
 
 }
