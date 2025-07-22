@@ -259,11 +259,11 @@
               <!-- Cash in/out -->
               <div class="py-2">
                 <label  class="form-label">Transection Type: </label><br>
-                <input type="radio" class="btn-check" name="update_tnx_status" id="update_cash_in_button" value="cash_in" <?= ($data['cash_in'] > 0) ? 'checked' : '' ; ?> >
-                <label class="btn text-success" for="update_cash_in_button">Cash In (+)</label>
+                <input type="radio" class="btn-check" name="update_tnx_status" id="update_cash_in_button<?= $data['id'] ?>" value="cash_in" <?= ($data['cash_in'] > 0) ? 'checked' : '' ; ?> >
+                <label class="btn text-success" for="update_cash_in_button<?= $data['id'] ?>">Cash In (+)</label>
 
-                <input type="radio" class="btn-check" name="update_tnx_status" id="update_cash_out_button" value="cash_out" <?= ($data['cash_out'] > 0) ? 'checked' : '' ; ?> >
-                <label class="btn text-danger" for="update_cash_out_button">Cash Out (-)</label>
+                <input type="radio" class="btn-check" name="update_tnx_status" id="update_cash_out_button<?= $data['id'] ?>" value="cash_out" <?= ($data['cash_out'] > 0) ? 'checked' : '' ; ?> >
+                <label class="btn text-danger" for="update_cash_out_button<?= $data['id'] ?>">Cash Out (-)</label>
               </div>
               <!-- date & time -->
               <div class="row">
